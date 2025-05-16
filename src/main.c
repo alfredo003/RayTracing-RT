@@ -1,8 +1,20 @@
 #include "raytracer.h"
 
-int main(void)
+
+int	main(int argc, char **argv)
 {
-    int i = ft_atoi("1");
-    printf("Num= %d\n",i);
-    return (0);
+	t_scene scene;
+
+	if(argc != 2)
+		return printf("Error! ./name_program <Path Map> \n");
+	
+
+	validate_scene(argv[1], &scene);	
+
+	printf("Ambient Light:\n");
+	printf("  Ratio: %.1f\n", scene.ambient_light.ratio);
+	printf("  Color: R=%d, G=%d, B=%d\n", scene.ambient_light.color.red, 
+	scene.ambient_light.color.green, scene.ambient_light.color.blue);
+
+	return (0);
 }
