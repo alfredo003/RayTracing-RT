@@ -3,18 +3,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_scene scene;
+	t_raytracer raytracer;
 
 	if(argc != 2)
-		return printf("Error! ./name_program <Path Map> \n");
-	
+		return printf("miniRT <scene file>.rt\n");
+		
+	validate_scene(&raytracer,argv[1]);
+	init_raytracing(&raytracer);
 
-	validate_scene(argv[1], &scene);	
-
-	printf("Ambient Light:\n");
-	printf("  Ratio: %.1f\n", scene.ambient_light.ratio);
-	printf("  Color: R=%d, G=%d, B=%d\n", scene.ambient_light.color.red, 
-	scene.ambient_light.color.green, scene.ambient_light.color.blue);
+	mlx_loop(raytracer.mlx);
 
 	return (0);
 }

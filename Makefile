@@ -17,7 +17,12 @@ LIBX_INC = -I$(LIBX_DIR)
 LIBX = $(LIBX_DIR)/libmlx_Linux.a
 
 SRCS = $(DIR_SRC)/main.c \
-		$(DIR_SRC)/scene/validate_scene.c
+		$(DIR_SRC)/init.c \
+		$(DIR_SRC)/scene/ambient_light.c \
+		$(DIR_SRC)/scene/validate.c \
+		$(DIR_SRC)/scene/utils.c\
+		$(DIR_SRC)/scene/color.c\
+		$(DIR_SRC)/win/events.c
 
 OBJS = $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 
@@ -33,16 +38,18 @@ $(TARGET): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(LIBX_DIR)
 	mkdir -p $(DIR_BIN)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX) -lm -o $(TARGET)
-
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX)  -lX11 -lXext -lm -o $(TARGET)
+	@clear
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(LIBX_DIR)
 	$(RM) $(DIR_OBJ)
+	@clear
 
 fclean: clean
 	@make fclean -C $(LIBFT_DIR)
 	$(RM) $(DIR_BIN)
+	@clear
 
 re: fclean all
 
