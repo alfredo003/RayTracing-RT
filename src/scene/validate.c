@@ -9,6 +9,8 @@ void check_element(char *line,int *i, t_raytracer *raytracer)
 {
 	if(ft_strncmp(&line[*i], "A", 1) == 0)
 		ambient_light(line,&raytracer->scene);
+	else if(ft_strncmp(&line[*i], "C", 1) == 0)
+		camera(line,&raytracer->scene);
 }
 
 int extension_is_valide(char *filename)
