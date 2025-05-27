@@ -19,9 +19,13 @@ LIBX = $(LIBX_DIR)/libmlx_Linux.a
 SRCS = $(DIR_SRC)/main.c \
 		$(DIR_SRC)/init.c \
 		$(DIR_SRC)/scene/ambient_light.c \
+		$(DIR_SRC)/scene/camera.c \
+		$(DIR_SRC)/scene/direction.c \
+		$(DIR_SRC)/scene/position.c \
 		$(DIR_SRC)/scene/validate.c \
 		$(DIR_SRC)/scene/utils.c\
 		$(DIR_SRC)/scene/color.c\
+		$(DIR_SRC)/win/render_scene.c \
 		$(DIR_SRC)/win/events.c
 
 OBJS = $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)

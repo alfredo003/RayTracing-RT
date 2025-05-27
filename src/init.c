@@ -8,7 +8,7 @@ void init_raytracing(t_raytracer *raytracer)
     raytracer->img = mlx_new_image(raytracer->mlx,WIDTH,HEIGHT);
     raytracer->addr = mlx_get_data_addr(raytracer->img,&raytracer->bits_per_pixel,&raytracer->line_length, &raytracer->endian);
 
-    render_scene(&raytracer);
+    render_scene(raytracer);
 
     mlx_put_image_to_window(raytracer->mlx, raytracer->win, raytracer,0,0);
     mlx_hook(raytracer->win,2, 1L << 0,esc_event_key,raytracer);
