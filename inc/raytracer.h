@@ -6,6 +6,7 @@
 #include "mlx.h"
 #include <errno.h>
 #include <math.h>
+#include "render.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
@@ -52,7 +53,7 @@ typedef struct s_raytracer
     void *win;
     void *img;
     char *addr;
-    int bits_for_pixel;
+    int bits_per_pixel;
     int line_length;
     int endian;
     t_scene scene;
