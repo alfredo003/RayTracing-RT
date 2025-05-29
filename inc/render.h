@@ -13,5 +13,4 @@ typedef struct s_ray_var
 }		t_ray_var;
 
 
-
 #endif

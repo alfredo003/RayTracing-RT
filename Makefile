@@ -26,7 +26,8 @@ SRCS = $(DIR_SRC)/main.c \
 		$(DIR_SRC)/scene/utils.c\
 		$(DIR_SRC)/scene/color.c\
 		$(DIR_SRC)/win/render_scene.c \
-		$(DIR_SRC)/win/events.c
+		$(DIR_SRC)/win/events.c \
+		$(DIR_SRC)/utils/vec3.c
 
 OBJS = $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 

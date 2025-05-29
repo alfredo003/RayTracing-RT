@@ -1,5 +1,13 @@
 #include "raytracer.h"
 
+t_vec3	get_up_world(t_vec3 forward)
+{
+	if (fabs(forward.x) == 0 && fabs(forward.z) == 0)
+		return ((t_vec3){0, 0, 1});
+	else
+		return ((t_vec3){0, 1, 0});
+}
+
 t_vec3 get_ray_direction(t_camera camera, int i, int j)
 {
     double  aspect_ratio;
@@ -19,7 +27,18 @@ t_vec3 get_ray_direction(t_camera camera, int i, int j)
     vector.x = (vector.x - 0.5) * viewport_width;
     vector.y = (0.5 - vector.y) * viewport_height;
 
+    vector.forward = camera.direction;
+    vector.up_world = get_up_world(vector.forward);
+    vector.right = vec3_normalize(vec3_cross(vector.forward, vector.up_world));
+    vector.up = vec3_normalize(vec3_cross(vector.right, vector.forward));
     
+    vector.direction = (t_vec3){
+        vector.forward.x + vector.x * vector.right.x + vector.y * vector.up.x,
+		vector.forward.y + vector.x * vector.right.y + vector.y * vector.up.y,
+		vector.forward.z + vector.x * vector.right.z + vector.y * vector.up.z
+    };
+
+    return (vec3_normalize(vector.direction));
 }
 
 void put_pixel(t_raytracer *img, int x, int y, t_color color)
