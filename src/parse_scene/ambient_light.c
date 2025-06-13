@@ -6,7 +6,7 @@ static double get_ratio(char *ratio, char *line, int fd, char **tokens)
 
     if(ft_isdouble(ratio) == 0)
     {
-        printf("Error: Ratio is not number");
+        printf("Error: Ratio is not number\n");
         free_tokens(tokens);
         free_buffer_and_exit(line,fd);
     }

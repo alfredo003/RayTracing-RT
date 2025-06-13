@@ -9,7 +9,7 @@ static void color_is_valid(char *line, int fd, char **color_tokens, char **token
         || !color_tokens[1] || !color_tokens[2])
     {
         result = 1;
-        printf("Error: color format: 'R,G,B'");
+        printf("Error: color format: 'R,G,B'\n");
     }
     else if (!ft_isnumber(color_tokens[0]) || !ft_isnumber(color_tokens[1]) || !ft_isnumber(color_tokens[2]))
     {
@@ -34,8 +34,8 @@ t_color get_color(char *color, char *line, int fd, char **tokens)
         color_tokens = ft_split(color, ',');
         color_is_valid(line, fd, color_tokens, tokens);
         rgb.red = ft_atoi(color_tokens[0]);
-        rgb.blue = ft_atoi(color_tokens[1]);
-        rgb.green = ft_atoi(color_tokens[2]);
+        rgb.blue = ft_atoi(color_tokens[2]);
+        rgb.green = ft_atoi(color_tokens[1]);
        if(rgb.red < 0 || rgb.red > 255 || rgb.green < 0 || rgb.green > 255
             || rgb.blue < 0 || rgb.blue > 255)
         {

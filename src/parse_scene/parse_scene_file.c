@@ -3,6 +3,9 @@
 void init_struct(t_scene *scene)
 {
     scene->num_ambient_light = 0;
+	scene->num_camera = 0;
+	scene->num_light = 0;
+	scene->num_sphere = 0;
 }
 
 void check_element(char *line,int *i, t_raytracer *raytracer)
@@ -11,6 +14,13 @@ void check_element(char *line,int *i, t_raytracer *raytracer)
 		ambient_light(line,&raytracer->scene);
 	else if(ft_strncmp(&line[*i], "C", 1) == 0)
 		camera(line,&raytracer->scene);
+	else if(ft_strncmp(&line[*i], "L", 1) == 0)
+		light(line,&raytracer->scene);
+	else if (ft_strncmp(&line[*i], "sp", 2) == 0)
+		sphere(line, &raytracer->scene);
+	else if (ft_strncmp(&line[*i], "pl", 2) == 0)
+		plane(line, &raytracer->scene);
+
 }
 
 int extension_is_valide(char *filename)
@@ -42,7 +52,7 @@ int open_file(char *file)
 	return (fd);
 }
 
-void validate_scene(t_raytracer *raytracer,char *filename)
+int parse_scene_file(t_raytracer *raytracer,char *filename)
 {
 	char *line;
 	int  fd;
@@ -53,7 +63,11 @@ void validate_scene(t_raytracer *raytracer,char *filename)
 	{
 		line = get_next_line(fd);
 		if(!line)
+		{
+			return (1);
 			break;
+		}
+			
 		if(ft_strisspace(line))
 		{
 			free(line);
@@ -67,4 +81,5 @@ void validate_scene(t_raytracer *raytracer,char *filename)
 		free(line);
 	}
 	close(fd);
+	return (0);
 }

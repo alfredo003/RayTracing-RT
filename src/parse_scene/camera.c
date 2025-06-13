@@ -1,7 +1,7 @@
 #include "raytracer.h"
 
 static double get_field_view(char *fov_tokens, char *line, int fd, char **tokens)
-{
+{ 
     double fov;
 
     if(ft_isdouble(fov_tokens) == 0)
