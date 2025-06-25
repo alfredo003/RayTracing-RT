@@ -6,6 +6,8 @@ void init_struct(t_scene *scene)
 	scene->num_camera = 0;
 	scene->num_light = 0;
 	scene->num_sphere = 0;
+	scene->num_plane = 0;
+	scene->num_cylinder = 0;
 }
 
 void check_element(char *line,int *i, t_raytracer *raytracer)
@@ -20,7 +22,8 @@ void check_element(char *line,int *i, t_raytracer *raytracer)
 		sphere(line, &raytracer->scene);
 	else if (ft_strncmp(&line[*i], "pl", 2) == 0)
 		plane(line, &raytracer->scene);
-
+	else if (ft_strncmp(&line[*i], "cy", 2) == 0)
+		cylinder(line, &raytracer->scene);
 }
 
 int extension_is_valide(char *filename)

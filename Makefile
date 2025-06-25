@@ -28,12 +28,18 @@ SRCS = $(DIR_SRC)/main.c \
 		$(DIR_SRC)/parse_scene/parse_scene_file.c \
 		$(DIR_SRC)/parse_scene/utils.c\
 		$(DIR_SRC)/parse_scene/color.c\
+		$(DIR_SRC)/parse_scene/cylinder.c\
+		$(DIR_SRC)/parse_scene/diameter_height.c\
+		$(DIR_SRC)/parse_scene/axis.c\
 		$(DIR_SRC)/win/render_scene.c \
 		$(DIR_SRC)/win/raytracing.c \
 		$(DIR_SRC)/win/events.c \
 		$(DIR_SRC)/win/intersections/intersect_sphere.c \
 		$(DIR_SRC)/win/intersections/intersect_plane.c \
+		$(DIR_SRC)/win/intersections/intersect_cylinder.c \
+		$(DIR_SRC)/win/shading/shade_cylinder.c \
 		$(DIR_SRC)/win/shading/shade_plane.c \
+		$(DIR_SRC)/win/shading/shade_sphere.c \
 		$(DIR_SRC)/utils/vec3.c \
 		$(DIR_SRC)/utils/list_objs.c
 

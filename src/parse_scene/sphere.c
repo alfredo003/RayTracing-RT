@@ -1,17 +1,5 @@
 #include "raytracer.h"
 
-double get_diameter(char *diameter, char *line, int fd, char **tokens)
-{
-    if(ft_isdouble(diameter) == 0)
-    {
-        printf("Dimeter is invalid!");
-        free_tokens(tokens);
-        free_buffer_and_exit(line, fd);
-    }
-
-    return (ft_atof(diameter));
-}
-
 void sphere(char *line, t_scene *scene)
 {
     char **tokens;
@@ -19,7 +7,7 @@ void sphere(char *line, t_scene *scene)
     char *center;
     char *color;
     t_sphere *sphere;
-
+ 
     tokens = ft_split(line, ' ');
 
     if(!tokens || num_tokens(tokens) != 4 || !tokens[0] 

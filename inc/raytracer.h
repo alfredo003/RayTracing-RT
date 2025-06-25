@@ -67,7 +67,6 @@ typedef struct s_shade_object
     double  distance_min;
 } t_shade_object;
 
-
 typedef struct s_object_list
 {
     t_object_type        type;
@@ -89,22 +88,32 @@ typedef struct s_plane
     t_color color;
 }   t_plane;
 
+typedef struct s_cylinder
+{
+    t_vec3 center;
+    t_vec3 axis;
+    double diameter;
+    double height;
+    t_color color;
+}   t_cylinder;
+
 typedef struct s_scene
 {
-   int fd;
-   t_ambient_light ambient_light;
-   int num_ambient_light;
-   t_camera camera;
-   int num_camera;
-   t_sphere sphere;
-   int num_sphere;
-   t_light light;
-   int num_light; 
-   t_plane plane;
-   int num_plane;
-   t_object_list	*object_list;
+    int fd;
+    t_ambient_light ambient_light;
+    int num_ambient_light;
+    t_camera camera;
+    int num_camera;
+    t_sphere sphere;
+    int num_sphere;
+    t_light light;
+    int num_light; 
+    t_plane plane;
+    int num_plane;
+    t_cylinder cylinder;
+    int num_cylinder;
+    t_object_list	*object_list;
 }   t_scene;
-
 
 typedef struct s_raytracer
 {
@@ -121,7 +130,7 @@ typedef struct s_raytracer
 #include "./objects.h"
 #include "./render.h"
 
-void init_raytracing(t_raytracer *raytracer);
+int init_mlx(t_raytracer *raytracer);
 int esc_event_key(int keycod, t_raytracer *param);
 int  close_event_window(t_raytracer *param);
 int parse_scene_file(t_raytracer *raytracer,char *filename);
@@ -133,6 +142,10 @@ void light(char *line, t_scene *scene);
 t_color get_color(char *color, char *line, int fd, char **tokens);
 t_vec3  get_position(char *coordinate, char *line, int fd, char **tokens);
 t_vec3  get_direction(char *coordinate, char *line, int fd, char **tokens);
+
+double get_diameter(char *diameter, char *line, int fd, char **tokens);
+double get_height(char *height, char *line, int fd, char **tokens);
+t_vec3 get_axis(char *xyz, char *line, int fd, char **tokens);
 
 t_vec3	vec3_normalize(t_vec3 v);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);

@@ -32,7 +32,7 @@ void debug_objects(t_object_list *obj_list)
     printf("==============================\n");
 }
  
-void init_raytracing(t_raytracer *raytracer)
+int  init_mlx(t_raytracer *raytracer)
 {
     raytracer->mlx = mlx_init();
     raytracer->win = mlx_new_window(raytracer->mlx, WIDTH,HEIGHT, "Ray Tracing");
@@ -49,6 +49,7 @@ void init_raytracing(t_raytracer *raytracer)
     printf("Light: \n brightness: %f \n",raytracer->scene.light.brightness);
     printf("Sphere: \n diameter: %f \n",raytracer->scene.sphere.diameter);
     printf("Plane: \n Color: %d \n",raytracer->scene.plane.color.red);
+    printf("Cylinder: \n Color: %.2f \n",raytracer->scene.cylinder.height);
     //debug_objects(raytracer->scene.object_list);
-    
+    return 1;
 }
