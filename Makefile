@@ -5,7 +5,6 @@ CFLAGS = -Wall -Wextra -Werror -Iinc
 RM = rm -rf
 
 DIR_OBJ = obj
-DIR_BIN = bin
 DIR_SRC = src
 
 LIBFT_DIR = ./libs/libft
@@ -45,19 +44,17 @@ SRCS = $(DIR_SRC)/main.c \
 
 OBJS = $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 
-TARGET = $(DIR_BIN)/$(NAME)
 
-all: $(TARGET)
+all: $(NAME)
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(LIBFT_INC) $(LIBX_INC) -c $< -o $@
 
-$(TARGET): $(OBJS)
+$(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(LIBX_DIR)
-	mkdir -p $(DIR_BIN)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX)  -lX11 -lXext -lm -lz -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX)  -lX11 -lXext -lm -lz -o $(NAME)
 	@clear
 clean:
 	@make clean -C $(LIBFT_DIR)
@@ -67,7 +64,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIBFT_DIR)
-	$(RM) $(DIR_BIN)
+	@$(RM) $(NAME)
 	@clear
 
 re: fclean all
